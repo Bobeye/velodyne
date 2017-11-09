@@ -43,6 +43,11 @@ VelodyneDriver::VelodyneDriver(ros::NodeHandle node,
       packet_rate = 3472.17;            // 1333312 / 384
       model_full_name = std::string("HDL-") + config_.model;
     }
+  else if (config_.model == "64E_S3")
+    {
+      packet_rate = 3471.66;
+      model_full_name = std::string("HDL-") + config_.model;
+    }
   else if (config_.model == "64E")
     {
       packet_rate = 2600.0;
@@ -66,6 +71,7 @@ VelodyneDriver::VelodyneDriver(ros::NodeHandle node,
   std::string deviceName(std::string("Velodyne ") + model_full_name);
 
   private_nh.param("rpm", config_.rpm, 600.0);
+
   ROS_INFO_STREAM(deviceName << " rotating at " << config_.rpm << " RPM");
   double frequency = (config_.rpm / 60.0);     // expected Hz rate
 
